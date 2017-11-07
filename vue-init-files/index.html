@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <title>Vue app</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+    <div id="main">
+        <div class="container">  
+        	<h1>Lorem ipsum dolor sit amet</h1>         
+            <div class="intro-text">
+    			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    		</div>
+    		<product-grid name="Catalog"></product-grid>
+        </div>
+    </div>
+
+    <template id="product-grid">
+
+        <div class="product-grid">
+            <h2>{{ name }}</h2>
+
+            <div class="filter-buttons">
+            	<button v-on:click="productFilterKey = 'all'" :class="{ active: productFilterKey == 'all' }">All</button>
+  				<button v-on:click="productFilterKey = 'sale'" :class="{ active: productFilterKey == 'sale' }">Sale</button>
+  			</div>
+
+            <ul>
+                <li v-for="item in productFilter">
+                    <product :item="item"></product>
+                </li>
+            </ul>
+    
+        </div>
+
+    </template>
+
+    <template id="product">
+
+        <div class="product">
+        	<img  :src="item.data.thumbnail"  class="thumbnail"></img>
+            <div class="details">  
+                <div  :title="item.data.title"  class="title">
+                  {{ item.data.title }}
+                </div>   
+                <div class="price">$ {{ item.data.price }} </div>       
+            </div>
+        </div>
+
+    </template>
+
+	<script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
+	<script src="script.js"></script>
+
+
+
+
+</body>
+</html>
